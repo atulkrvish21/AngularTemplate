@@ -6,7 +6,9 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { Dashboard2Component } from './Components/dashboard2/dashboard2.component';
 import { Dashboard3Component } from './Components/dashboard3/dashboard3.component';
 import { FormsComponent } from './Components/forms/forms.component';
-
+import { AuthGuard } from './services/auth.guard'; // Import the AuthGuard
+import { Component } from '@angular/core';
+import { LogoutComponent } from './Components/logout/logout.component';
 export const routes: Routes = [
     {
         path:'',
@@ -26,7 +28,8 @@ export const routes: Routes = [
                 path:'dashboard',
                 component:DashboardComponent,
                 pathMatch:'full',
-                title:'Dashboard'
+                title:'Dashboard',
+                canActivate: [AuthGuard] 
             },
             {
                 path:'dashboard2',
@@ -45,6 +48,12 @@ export const routes: Routes = [
                 component:FormsComponent,
                 pathMatch:'full',
                 title:'Forms'
+            },
+            {
+                path:'logout',
+                component:LogoutComponent,
+                pathMatch:'full',
+                title:'Logout'
             }
         ]
     }
